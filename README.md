@@ -8,7 +8,7 @@
 An anonymous, real-time clipboard workspace. Drop text, links, files, or code snippets and see them sync instantly across all your devices without ever needing to log in or create an account. 
 
 ## Live Demo
-**Check out the live application here:** [SyncSpace on Vercel](https://syncspace1.vercel.app/)
+**Check out the live application here:** [https://syncspace1.vercel.app/]
 
 ---
 
@@ -39,7 +39,7 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine. You
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/16niraj/syncspace.git](https://github.com/16niraj/syncspace.git)
+git clone https://github.com/16niraj/syncspace.git
 cd syncspace
 ```
 
@@ -63,7 +63,7 @@ CREATE TABLE rooms (
 4. Configure Environment Variables
 Create a file named .env.local in the root directory of your project and add your Supabase project credentials:
 ``` bash
-VITE_SUPABASE_URL=[https://your-project-id.supabase.co](https://your-project-id.supabase.co)
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
 VITE_SUPABASE_ANON_KEY=your-super-long-anon-key
 ```
 5. Run the development server
