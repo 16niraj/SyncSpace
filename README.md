@@ -1,16 +1,77 @@
-# React + Vite
+# SyncSpace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
-Currently, two official plugins are available:
+An anonymous, real-time clipboard workspace. Drop text, links, files, or code snippets and see them sync instantly across all your devices without ever needing to log in or create an account. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Live Demo
+**Check out the live application here:** [SyncSpace on Vercel](https://syncspace1.vercel.app/)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+* **Real-Time Syncing:** Powered by Supabase WebSockets. Watch text update instantly across multiple browser windows and devices.
+* **File Attachments:** Upload images or documents (up to 5MB) directly into your workspace. Links are automatically generated and synced.
+* **Smart Auto-Save:** Built-in debouncing ensures your data is saved securely without overwhelming the database with API calls.
+* **Frictionless Rooms:** Generate a random 6-digit room code instantly, or join an existing room via a sleek, user-friendly modal.
+* **Modern UI:** A clean, responsive, light-mode interface styled flawlessly with Tailwind CSS.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+* **Frontend:** React (built with Vite)
+* **Routing:** React Router DOM
+* **Styling:** Tailwind CSS
+* **Backend / Database:** Supabase (PostgreSQL)
+* **Realtime:** Supabase Realtime Channels
+* **File Storage:** Supabase Storage Buckets
+* **Deployment:** Vercel
+
+## Getting Started (Run Locally)
+
+Follow these instructions to set up the project locally on your machine.
+
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine. You will also need a free [Supabase](https://supabase.com/) account.
+
+### 1. Clone the repository
+```bash
+git clone [https://github.com/16niraj/syncspace.git](https://github.com/16niraj/syncspace.git)
+cd syncspace
+```
+
+### 2. Install dependencies
+``` bash
+npm install
+```
+
+### 3. Set up Supabase
+
+1. Create a new Supabase project.
+2. Go to the SQL Editor and run this query to create your table:
+``` bash
+CREATE TABLE rooms (
+  id text PRIMARY KEY,
+  content text,
+  expires_at timestamp with time zone
+);
+```
+3. Go to Storage and create a new bucket named room-files. Make sure to toggle Public bucket to ON.
+4. Configure Environment Variables
+Create a file named .env.local in the root directory of your project and add your Supabase project credentials:
+``` bash
+VITE_SUPABASE_URL=[https://your-project-id.supabase.co](https://your-project-id.supabase.co)
+VITE_SUPABASE_ANON_KEY=your-super-long-anon-key
+```
+5. Run the development server
+``` bash
+npm run dev
+```
+
+Open http://localhost:5173 in your browser to view the app.
+
+### License
+This project is open-source and available under the MIT License.
