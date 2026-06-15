@@ -2,6 +2,9 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "./supabaseClient";
 import debounce from "lodash.debounce";
+import ReactQuill from 'react-quill-new';
+import 'react-quill-new/dist/quill.snow.css';
+
 
 export default function Room() {
   const { roomId } = useParams();
@@ -93,11 +96,10 @@ export default function Room() {
     [roomId],
   );
 
-  const handleTextChange = (e) => {
-    const newText = e.target.value;
-    setText(newText);
+  const handleTextChange = (content) => {
+    setText(content);
     if (autoSave) {
-      updateDatabase(newText);
+      updateDatabase(content);
     }
   };
 
@@ -128,6 +130,7 @@ export default function Room() {
       setJoinInput("");
     }
   };
+
 
   // File Uploads
   const handleFileUpload = async (event) => {
@@ -160,8 +163,8 @@ export default function Room() {
         .from("room-files")
         .getPublicUrl(filePath);
 
-      // Append the file link to the text area
-      const fileLink = `\n📎 [${file.name}] - ${publicUrlData.publicUrl}\n`;
+      // Create a clickable HTML link for React Quill
+      const fileLink = `<p><br> <a href="${publicUrlData.publicUrl}" target="_blank" rel="noopener noreferrer" style="color: #A875FF; text-decoration: underline;"><strong>${file.name}</strong></a><br></p>`;
       const newText = text + fileLink;
 
       setText(newText);
@@ -173,7 +176,6 @@ export default function Room() {
       event.target.value = "";
     }
   };
-
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] text-gray-900 font-sans flex flex-col">
@@ -330,12 +332,16 @@ export default function Room() {
             {activeUsers} Active
           </div>
 
-          <textarea
-            value={text}
-            onChange={handleTextChange}
-            placeholder="Start typing or pasting your content here..."
-            className="w-full h-[500px] p-8 resize-none outline-none font-mono text-gray-700 placeholder-gray-400 text-sm leading-relaxed"
-          />
+          {/* React Quill Editor */}
+          <div className="w-full h-[500px] flex flex-col">
+            <ReactQuill 
+              theme="snow" 
+              value={text} 
+              onChange={handleTextChange} 
+              placeholder="Start typing, pasting, or uploading files..."
+              className="flex-1 h-full overflow-hidden [&_.ql-editor]:text-base [&_.ql-editor]:font-sans [&_.ql-editor]:text-gray-700"
+            />
+          </div>
 
           {/* Editor Footer */}
           <div className="bg-[#FAFAFA] border-t border-gray-200 px-6 py-4 flex justify-between items-center text-sm text-gray-500">

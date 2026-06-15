@@ -15,7 +15,8 @@ An anonymous, real-time clipboard workspace. Drop text, links, files, or code sn
 ## Features
 
 * **Real-Time Syncing:** Powered by Supabase WebSockets. Watch text update instantly across multiple browser windows and devices.
-* **File Attachments:** Upload images or documents (up to 5MB) directly into your workspace. Links are automatically generated and synced.
+* **Rich Text Editing:** Format your notes, create lists, and drop instantly clickable hyperlinks using the built-in React Quill editor.
+* **File Attachments:** Upload images or documents (up to 5MB) directly into your workspace. Secure download links are automatically generated and synced.
 * **Smart Auto-Save:** Built-in debouncing ensures your data is saved securely without overwhelming the database with API calls.
 * **Frictionless Rooms:** Generate a random 6-digit room code instantly, or join an existing room via a sleek, user-friendly modal.
 * **Modern UI:** A clean, responsive, light-mode interface styled flawlessly with Tailwind CSS.
@@ -24,6 +25,7 @@ An anonymous, real-time clipboard workspace. Drop text, links, files, or code sn
 
 * **Frontend:** React (built with Vite)
 * **Routing:** React Router DOM
+* **Editor:** React Quill (`react-quill-new`)
 * **Styling:** Tailwind CSS
 * **Backend / Database:** Supabase (PostgreSQL)
 * **Realtime:** Supabase Realtime Channels
@@ -60,13 +62,20 @@ CREATE TABLE rooms (
 );
 ```
 3. Go to Storage and create a new bucket named room-files. Make sure to toggle Public bucket to ON.
-4. Configure Environment Variables
+4. Run this query in the SQL Editor to allow public uploads to your bucket:
+``` bash
+CREATE POLICY "Allow public uploads" 
+ON storage.objects FOR INSERT 
+TO public 
+WITH CHECK (bucket_id = 'room-files');
+```
+5. Configure Environment Variables
 Create a file named .env.local in the root directory of your project and add your Supabase project credentials:
 ``` bash
 VITE_SUPABASE_URL=https://your-project-id.supabase.co
 VITE_SUPABASE_ANON_KEY=your-super-long-anon-key
 ```
-5. Run the development server
+6. Run the development server
 ``` bash
 npm run dev
 ```

@@ -1,5 +1,5 @@
 {
-  "name": "droproom-clone",
+  "name": "syncspace",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,6 +16,7 @@
     "lodash.debounce": "^4.0.8",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "react-quill-new": "^3.8.3",
     "react-router-dom": "^7.17.0"
   },
   "devDependencies": {
