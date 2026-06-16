@@ -176,7 +176,6 @@ export default function Room() {
   return (
     <div className="min-h-screen bg-[#FAFAFA] text-gray-900 font-sans flex flex-col overflow-x-hidden">
       {/* Top Navigation Bar */}
-      {/* Top Navigation Bar */}
       <nav className="flex flex-col sm:flex-row items-center justify-between px-4 lg:px-8 py-4 bg-white border-b border-gray-200 gap-4 sm:gap-0">
         
         {/* ROW 1 (Mobile): Logo & Room ID */}
@@ -240,9 +239,9 @@ export default function Room() {
             </button>
 
             <select value={expiry} onChange={(e) => setExpiry(e.target.value)} className="cursor-pointer flex items-center gap-2 px-2 sm:px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors text-sm">
-              <option value="1h">1H</option>
-              <option value="3h">3H</option>
-              <option value="6h">6H</option>
+              <option value="1h">1 Hour</option>
+              <option value="3h">3 Hours</option>
+              <option value="6h">6 Hours</option>
             </select>
 
             <label className="flex items-center gap-1.5 cursor-pointer ml-1">
