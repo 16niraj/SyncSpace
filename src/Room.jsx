@@ -2,9 +2,8 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "./supabaseClient";
 import debounce from "lodash.debounce";
-import ReactQuill from 'react-quill-new';
-import 'react-quill-new/dist/quill.snow.css';
-
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
 
 export default function Room() {
   const { roomId } = useParams();
@@ -48,7 +47,6 @@ export default function Room() {
     fetchInitialData();
   }, [roomId, expiry]);
 
-
   // Set up Realtime Subscriptions
   useEffect(() => {
     const channel = supabase.channel(`room_${roomId}`);
@@ -81,7 +79,6 @@ export default function Room() {
       supabase.removeChannel(channel);
     };
   }, [roomId]);
-
 
   // Debounced Database Update
   const updateDatabase = useCallback(
@@ -131,7 +128,6 @@ export default function Room() {
     }
   };
 
-
   // File Uploads
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
@@ -178,64 +174,70 @@ export default function Room() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-gray-900 font-sans flex flex-col">
+    <div className="min-h-screen bg-[#FAFAFA] text-gray-900 font-sans flex flex-col overflow-x-hidden">
       {/* Top Navigation Bar */}
-      <nav className="flex flex-wrap items-center justify-between px-4 lg:px-8 py-3 bg-white border-b border-gray-200 gap-4">
-        <div
-          onClick={handleCreateNewRoom}
-          className="flex items-center gap-2 cursor-pointer"
-        >
-          <div className="bg-[#1E1E2E] text-white p-2 rounded-xl flex items-center justify-center">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-            </svg>
-          </div>
-          <span className="font-bold text-xl tracking-tight text-gray-800">
-            Sync<span className="text-[#A875FF]">Space</span>
-          </span>
-        </div>
-
-        <div className="flex items-center gap-3 bg-gray-50 border border-gray-200 px-4 py-2 rounded-xl text-sm">
-          <span className="text-gray-500 font-medium">Room ID:</span>
-          <span className="font-bold tracking-wider">{roomId}</span>
-          <button
-            onClick={handleCopyLink}
-            className="cursor-pointer text-gray-400 hover:text-gray-600 ml-1 transition-colors"
+      <nav className="flex flex-col sm:flex-row flex-wrap items-center justify-between px-4 lg:px-8 py-4 bg-white border-b border-gray-200 gap-4">
+        {/* Logo & Room ID container */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-16 w-full sm:w-auto justify-between sm:justify-start">
+          <div
+            onClick={handleCreateNewRoom}
+            className="flex items-center gap-2 cursor-pointer"
           >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <div className="bg-[#1E1E2E] text-white p-2 rounded-xl flex items-center justify-center">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              </svg>
+            </div>
+            <span className="font-bold text-xl tracking-tight text-gray-800">
+              Sync<span className="text-[#A875FF]">Space</span>
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-xl text-sm">
+            <span className="text-gray-500 font-medium hidden sm:inline">
+              Room ID:
+            </span>
+            <span className="font-bold tracking-wider">{roomId}</span>
+            <button
+              onClick={handleCopyLink}
+              className="cursor-pointer text-gray-400 hover:text-gray-600 ml-1 transition-colors"
             >
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-          </button>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <div className="flex items-center gap-3 text-sm font-medium">
+        {/* Action Buttons Container */}
+        <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 text-sm font-medium w-full sm:w-auto">
           <button
             onClick={handleCreateNewRoom}
-            className="cursor-pointer flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors"
+            className="cursor-pointer flex items-center gap-1 sm:gap-2 px-3 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors text-xs sm:text-sm"
           >
             <svg
-              width="16"
-              height="16"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -246,16 +248,17 @@ export default function Room() {
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
-            Create New Room
+            <span className="hidden sm:inline">Create New Room</span>
+            <span className="sm:hidden">New</span>
           </button>
 
           <button
             onClick={handleJoinRoom}
-            className="cursor-pointer flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors"
+            className="cursor-pointer flex items-center gap-1 sm:gap-2 px-3 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors text-xs sm:text-sm"
           >
             <svg
-              width="16"
-              height="16"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -267,16 +270,17 @@ export default function Room() {
               <polyline points="10 17 15 12 10 7"></polyline>
               <line x1="15" y1="12" x2="3" y2="12"></line>
             </svg>
-            Join Room
+            <span className="hidden sm:inline">Join Room</span>
+            <span className="sm:hidden">Join</span>
           </button>
 
           <button
             onClick={handleManualSave}
-            className="cursor-pointer flex items-center gap-2 px-6 py-2 bg-[#5F6368] hover:bg-[#4a4d51] text-white rounded-xl transition-colors"
-            >
+            className="cursor-pointer flex items-center gap-1 sm:gap-2 px-4 py-2 bg-[#5F6368] hover:bg-[#4a4d51] text-white rounded-xl transition-colors text-xs sm:text-sm"
+          >
             <svg
-              width="16"
-              height="16"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -294,57 +298,59 @@ export default function Room() {
           <select
             value={expiry}
             onChange={(e) => setExpiry(e.target.value)}
-            className="cursor-pointer flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors"
-            >
+            className="cursor-pointer flex items-center gap-2 px-2 sm:px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors text-xs sm:text-sm"
+          >
             <option value="1h">1 Hour</option>
             <option value="3h">3 Hours</option>
             <option value="6h">6 Hours(Max)</option>
           </select>
 
-          <label className="flex items-center gap-2 cursor-pointer ml-2">
+          <label className="flex items-center gap-1 sm:gap-2 ml-1">
             <input
               type="checkbox"
               checked={autoSave}
               onChange={() => setAutoSave(!autoSave)}
-              className="w-4 h-4 text-[#A875FF] rounded border-gray-300 focus:ring-[#A875FF] accent-[#A875FF]"
+              className="w-4 h-4 text-[#A875FF] rounded border-gray-300 focus:ring-[#A875FF] accent-[#A875FF] cursor-pointer"
             />
-            <span className="text-gray-700">Auto-Save</span>
+            <span className="text-gray-700 text-xs sm:text-sm hidden sm:inline">
+              Auto-Save
+            </span>
           </label>
         </div>
       </nav>
 
-
       {/* Main Content Area */}
-      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-12 flex flex-col items-center">
-        <h1 className="text-5xl font-bold mb-2 tracking-tight text-gray-900">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-6 sm:py-12 flex flex-col items-center">
+        <h1 className="text-3xl sm:text-5xl font-bold mb-2 tracking-tight text-gray-900 text-center">
           Hi there, <span className="text-[#A875FF]">Welcome</span>
         </h1>
-        <h2 className="text-2xl font-bold mb-10 text-gray-800">
+        <h2 className="text-lg sm:text-2xl font-bold mb-6 sm:mb-10 text-gray-800 text-center">
           What would you like to paste?
         </h2>
 
         {/* Editor Container */}
         <div className="w-full bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden flex flex-col relative">
-          <div className="absolute top-4 right-4 flex items-center gap-2 bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-xs font-medium border border-emerald-100">
+          <div className="absolute top-2 right-2 sm:top-4 sm:right-4 flex items-center gap-2 bg-emerald-50 text-emerald-600 px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-medium border border-emerald-100 z-10">
             <span
               className={`w-2 h-2 rounded-full bg-emerald-500 ${activeUsers > 0 ? "animate-pulse" : ""}`}
             />
-            {activeUsers} Active
+            <span className="hidden sm:inline">{activeUsers} Active</span>
+            <span className="sm:hidden">{activeUsers}</span>
           </div>
 
           {/* React Quill Editor */}
-          <div className="w-full h-[500px] flex flex-col">
-            <ReactQuill 
-              theme="snow" 
-              value={text} 
-              onChange={handleTextChange} 
+          <div className="w-full h-[400px] sm:h-[500px] flex flex-col">
+            <ReactQuill
+              theme="snow"
+              value={text}
+              onChange={handleTextChange}
               placeholder="Start typing, pasting, or uploading files..."
               className="flex-1 h-full overflow-hidden [&_.ql-editor]:text-base [&_.ql-editor]:font-sans [&_.ql-editor]:text-gray-700"
             />
           </div>
 
           {/* Editor Footer */}
-          <div className="bg-[#FAFAFA] border-t border-gray-200 px-6 py-4 flex justify-between items-center text-sm text-gray-500">
+          <div className="bg-[#FAFAFA] border-t border-gray-200 px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-gray-500 gap-3">
             {/* Hidden File Input */}
             <input
               type="file"
@@ -357,11 +363,11 @@ export default function Room() {
             <button
               onClick={() => fileInputRef.current.click()}
               disabled={isUploading}
-              className={`flex items-center gap-2 transition-colors ${isUploading ? "text-[#A875FF] animate-pulse cursor-wait" : "hover:text-gray-800 cursor-pointer"}`}
+              className={`flex items-center justify-center w-full sm:w-auto gap-2 transition-colors ${isUploading ? "text-[#A875FF] animate-pulse cursor-wait" : "hover:text-gray-800 cursor-pointer"}`}
             >
               <svg
-                width="16"
-                height="16"
+                width="14"
+                height="14"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -374,24 +380,28 @@ export default function Room() {
               {isUploading ? "Uploading file..." : "Attach File (Max 5MB)"}
             </button>
 
-            <span className="font-mono">{text.length}/500000 characters</span>
+            <span className="font-mono text-[10px] sm:text-sm">
+              {text === "<p><br></p>" || text === "<p></p>" || text === ""
+                ? 0
+                : text.length}
+              /500000 characters
+            </span>
           </div>
         </div>
       </main>
-      
 
       {/* Join Room Modal Overlay */}
       {isJoinModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-2xl w-full max-w-sm shadow-xl relative">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
+          <div className="bg-white p-6 sm:p-8 rounded-2xl w-full max-w-sm shadow-xl relative">
             <button
               onClick={() => setIsJoinModalOpen(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
             >
               ✕
             </button>
-            <h2 className="text-2xl font-bold mb-2">Join a Room</h2>
-            <p className="text-gray-500 mb-6 text-sm">
+            <h2 className="text-xl sm:text-2xl font-bold mb-2">Join a Room</h2>
+            <p className="text-gray-500 mb-6 text-xs sm:text-sm">
               Enter a 6-digit room code to join and collaborate.
             </p>
 
@@ -401,12 +411,12 @@ export default function Room() {
               value={joinInput}
               onChange={(e) => setJoinInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && executeJoin()}
-              className="w-full text-center border-2 border-gray-200 rounded-xl py-4 font-bold text-lg mb-6 focus:border-[#A875FF] outline-none"
+              className="w-full text-center border-2 border-gray-200 rounded-xl py-3 sm:py-4 font-bold text-base sm:text-lg mb-6 focus:border-[#A875FF] outline-none"
             />
 
             <button
               onClick={executeJoin}
-              className="w-full bg-[#5F6368] hover:bg-[#4a4d51] text-white py-3 rounded-xl font-bold transition-all"
+              className="w-full bg-[#5F6368] hover:bg-[#4a4d51] text-white py-3 rounded-xl font-bold transition-all text-sm sm:text-base"
             >
               Join Now
             </button>
