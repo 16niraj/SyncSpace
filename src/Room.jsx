@@ -177,12 +177,23 @@ export default function Room() {
     <div className="min-h-screen bg-[#FAFAFA] text-gray-900 font-sans flex flex-col overflow-x-hidden">
       {/* Top Navigation Bar */}
       <nav className="flex flex-col sm:flex-row items-center justify-between px-4 lg:px-8 py-4 bg-white border-b border-gray-200 gap-4 sm:gap-0">
-        
         {/* ROW 1 (Mobile): Logo & Room ID */}
         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-12 w-full sm:w-auto justify-center sm:justify-start">
-          <div onClick={handleCreateNewRoom} className="flex items-center gap-2 cursor-pointer">
+          <div
+            onClick={handleCreateNewRoom}
+            className="flex items-center gap-2 cursor-pointer"
+          >
             <div className="bg-[#1E1E2E] text-white p-2 rounded-xl flex items-center justify-center">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
                 <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
               </svg>
@@ -195,8 +206,20 @@ export default function Room() {
           <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-xl text-sm">
             <span className="text-gray-500 font-medium">Room ID:</span>
             <span className="font-bold tracking-wider">{roomId}</span>
-            <button onClick={handleCopyLink} className="cursor-pointer text-gray-400 hover:text-gray-600 ml-1 transition-colors">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <button
+              onClick={handleCopyLink}
+              className="cursor-pointer text-gray-400 hover:text-gray-600 ml-1 transition-colors"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
               </svg>
@@ -206,19 +229,42 @@ export default function Room() {
 
         {/* Action Buttons Container */}
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto mt-2 sm:mt-0">
-          
           {/* ROW 2 (Mobile): Create Room & Join Room */}
           <div className="flex flex-row items-center justify-center gap-2 w-full sm:w-auto">
-            <button onClick={handleCreateNewRoom} className="cursor-pointer flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors text-sm flex-1 sm:flex-none">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <button
+              onClick={handleCreateNewRoom}
+              className="cursor-pointer flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors text-sm flex-1 sm:flex-none"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>
               Create Room
             </button>
 
-            <button onClick={handleJoinRoom} className="cursor-pointer flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors text-sm flex-1 sm:flex-none">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <button
+              onClick={handleJoinRoom}
+              className="cursor-pointer flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors text-sm flex-1 sm:flex-none"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
                 <polyline points="10 17 15 12 10 7"></polyline>
                 <line x1="15" y1="12" x2="3" y2="12"></line>
@@ -229,8 +275,20 @@ export default function Room() {
 
           {/* ROW 3 (Mobile): Save, Time, Auto-Save */}
           <div className="flex flex-row items-center justify-center gap-2 w-full sm:w-auto">
-            <button onClick={handleManualSave} className="cursor-pointer flex items-center justify-center gap-1.5 px-4 py-2 bg-[#5F6368] hover:bg-[#4a4d51] text-white rounded-xl transition-colors text-sm">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <button
+              onClick={handleManualSave}
+              className="cursor-pointer flex items-center justify-center gap-1.5 px-4 py-2 bg-[#5F6368] hover:bg-[#4a4d51] text-white rounded-xl transition-colors text-sm"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
                 <polyline points="17 21 17 13 7 13 7 21"></polyline>
                 <polyline points="7 3 7 8 15 8"></polyline>
@@ -238,18 +296,26 @@ export default function Room() {
               {isSyncing ? "Saving.." : "Save"}
             </button>
 
-            <select value={expiry} onChange={(e) => setExpiry(e.target.value)} className="cursor-pointer flex items-center gap-2 px-2 sm:px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors text-sm">
+            <select
+              value={expiry}
+              onChange={(e) => setExpiry(e.target.value)}
+              className="cursor-pointer flex items-center gap-2 px-2 sm:px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-700 transition-colors text-sm"
+            >
               <option value="1h">1 Hour</option>
               <option value="3h">3 Hours</option>
               <option value="6h">6 Hours</option>
             </select>
 
-            <label className="flex items-center gap-1.5 cursor-pointer ml-1">
-              <input type="checkbox" checked={autoSave} onChange={() => setAutoSave(!autoSave)} className="w-4 h-4 text-[#A875FF] rounded border-gray-300 focus:ring-[#A875FF] accent-[#A875FF]"/>
-              <span className="text-gray-700 text-sm">Auto-Save</span>
+            <label className="flex items-center gap-1.5 ml-1">
+              <input
+                type="checkbox"
+                checked={autoSave}
+                onChange={() => setAutoSave(!autoSave)}
+                className="w-4 h-4 text-[#A875FF] rounded border-gray-300 focus:ring-[#A875FF] accent-[#A875FF] cursor-pointer"
+              />
+              <span className="text-gray-700 text-sm ">Auto-Save</span>
             </label>
           </div>
-
         </div>
       </nav>
 
