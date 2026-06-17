@@ -21,6 +21,9 @@ An anonymous, real-time clipboard workspace. Drop text, links, files, or code sn
 * **Frictionless Rooms:** Generate a random 6-digit room code instantly, or join an existing room via a sleek, user-friendly modal.
 * **Modern UI:** A clean, responsive, light-mode interface styled flawlessly with Tailwind CSS.
 
+
+![image](./public/synspace_ui.jpeg)
+
 ## Tech Stack
 
 * **Frontend:** React (built with Vite)
