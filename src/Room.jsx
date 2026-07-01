@@ -199,7 +199,7 @@ export default function Room() {
               </svg>
             </div>
             <span className="font-bold text-xl tracking-tight text-gray-800">
-              Quick<span className="text-[#A875FF]">Sync</span>
+              Sync<span className="text-[#A875FF]">Space</span>
             </span>
           </div>
 
